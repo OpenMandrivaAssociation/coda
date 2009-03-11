@@ -2,14 +2,14 @@
 #  check requires and buildrequires
 #
 
-Summary: Coda distributed filesystem
-Name: coda-debug
+Name: coda
 Version: 6.9.4
 Release: %mkrel 1
-Url: http://www.coda.cs.cmu.edu/doc/html/index.html
-Source: ftp://ftp.coda.cs.cmu.edu/pub/coda/src/coda-%{version}.tar.gz
+Summary: Coda distributed filesystem
 License: GPL
 Group: Networking/Other
+Url: http://www.coda.cs.cmu.edu/doc/html/index.html
+Source: ftp://ftp.coda.cs.cmu.edu/pub/coda/src/coda-%{version}.tar.gz
 BuildRequires: lwp-devel
 BuildRequires: rvm-devel
 BuildRequires: rpc2-devel
@@ -34,6 +34,7 @@ Summary: Coda client
 Group: Networking/Other
 Requires: bc
 Requires: ed
+Obsoletes:  coda-debug-client
 Requires(post,preun): rpm-helper
 
 %description client
@@ -52,6 +53,7 @@ Group: Networking/Other
 Requires: bc
 Requires: ed
 Requires: rvm-tools
+Obsoletes:  coda-debug-server
 Requires(post,preun): rpm-helper
 
 %description server
@@ -64,6 +66,7 @@ Summary: Coda backup coordinator
 Group: Networking/Other
 Requires: bc
 Requires: ed
+Obsoletes:  coda-debug-backup
 Requires(post,preun): rpm-helper
 
 %description backup
