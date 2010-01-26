@@ -10,6 +10,7 @@ License: GPL
 Group: Networking/Other
 Url: http://www.coda.cs.cmu.edu/doc/html/index.html
 Source: ftp://ftp.coda.cs.cmu.edu/pub/coda/src/coda-%{version}.tar.gz
+Patch0:	venus_vol_cml.patch
 BuildRequires: lwp-devel
 BuildRequires: rvm-devel
 BuildRequires: rpc2-devel
@@ -75,8 +76,7 @@ well as the volume utilities.
 
 %prep
 %setup -q -n coda-%{version}
-
-#%patch0 -p1
+%patch0 -p0
 
 %build
 # chown -R $LOGNAME.users $RPM_BUILD_DIR/coda-%{version}
