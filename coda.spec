@@ -218,7 +218,7 @@ rm -rf $RPM_BUILD_DIR/obj-%{version}
 %{_bindir}/reinit
 %{_sbindir}/coda-server-logrotate
 %{_bindir}/au
-%{_bindir}/gcodacon
+#%{_bindir}/gcodacon
 %{_bindir}/mkcodabf
 %{_sbindir}/asrlauncher
 %{_sbindir}/tokentool
