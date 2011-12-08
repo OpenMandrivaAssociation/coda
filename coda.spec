@@ -79,15 +79,15 @@ well as the volume utilities.
 %patch0 -p0
 
 %build
-# chown -R $LOGNAME.users $RPM_BUILD_DIR/coda-%{version}
-rm -rf $RPM_BUILD_DIR/obj-%{version}
-mkdir $RPM_BUILD_DIR/obj-%{version}
-cd $RPM_BUILD_DIR/obj-%{version}
-$RPM_BUILD_DIR/coda-%{version}/configure --prefix=%{_prefix}
+# chown -R $LOGNAME.users %{_builddir}/coda-%{version}
+rm -rf %{_builddir}/obj-%{version}
+mkdir %{_builddir}/obj-%{version}
+cd %{_builddir}/obj-%{version}
+%{_builddir}/coda-%{version}/configure --prefix=%{_prefix}
 make
 
 %install
-cd $RPM_BUILD_DIR/obj-%{version}
+cd %{_builddir}/obj-%{version}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}%{_prefix}/coda/venus.cache %{buildroot}/dev \
 	 %{buildroot}%{_prefix}/coda/etc \
@@ -114,7 +114,7 @@ done
 
 %clean
 rm -rf %{buildroot}
-rm -rf $RPM_BUILD_DIR/obj-%{version}
+rm -rf %{_builddir}/obj-%{version}
 
 %preun client
 %_preun_service venus
