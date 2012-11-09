@@ -1,0 +1,11 @@
+--- coda-src/venus/vol_cml.cc	2010-01-26 17:05:06.367968658 +0100
++++ coda-src/venus/vol_cml.cc.patched	2010-01-26 17:05:00.467719605 +0100
+@@ -3606,7 +3606,7 @@
+ {
+     VnodeId vnode;
+     Unique_t vunique;
+-    char *name = de->name, *comp;
++    const char *name = de->name, *comp;
+     size_t prefixlen;
+     char namebuf[CODA_MAXPATHLEN];
+     struct WriteLinksHook *hook = (struct WriteLinksHook *)arg;
