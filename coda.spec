@@ -4,7 +4,7 @@
 
 Name: coda
 Version: 6.9.4
-Release: %mkrel 3
+Release: 3
 Summary: Coda distributed filesystem
 License: GPL
 Group: Networking/Other
@@ -21,7 +21,6 @@ BuildRequires: byacc
 BuildRequires: flex
 Requires: bc
 Requires(post,preun): rpm-helper
-BuildRoot: %{_tmppath}/%{name}-%{version}
 
 %description
 Source package for the Coda filesystem.  Three packages are provided by
@@ -79,16 +78,15 @@ well as the volume utilities.
 %patch0 -p0
 
 %build
-# chown -R $LOGNAME.users %{_builddir}/coda-%{version}
-rm -rf %{_builddir}/obj-%{version}
-mkdir %{_builddir}/obj-%{version}
-cd %{_builddir}/obj-%{version}
-%{_builddir}/coda-%{version}/configure --prefix=%{_prefix}
+# chown -R $LOGNAME.users $RPM_BUILD_DIR/coda-%{version}
+rm -rf $RPM_BUILD_DIR/obj-%{version}
+mkdir $RPM_BUILD_DIR/obj-%{version}
+cd $RPM_BUILD_DIR/obj-%{version}
+$RPM_BUILD_DIR/coda-%{version}/configure --prefix=%{_prefix}
 make
 
 %install
-cd %{_builddir}/obj-%{version}
-rm -rf %{buildroot}
+cd $RPM_BUILD_DIR/obj-%{version}
 mkdir -p %{buildroot}%{_prefix}/coda/venus.cache %{buildroot}/dev \
 	 %{buildroot}%{_prefix}/coda/etc \
 	 %{buildroot}/coda %{buildroot}%{_initrddir}\
@@ -113,8 +111,7 @@ done
 #mv -f %{buildroot}/%{_prefix}/man/* %{buildroot}/%{_mandir}
 
 %clean
-rm -rf %{buildroot}
-rm -rf %{_builddir}/obj-%{version}
+rm -rf $RPM_BUILD_DIR/obj-%{version}
 
 %preun client
 %_preun_service venus
@@ -153,6 +150,7 @@ rm -rf %{_builddir}/obj-%{version}
 %{_bindir}/clog
 %{_bindir}/cmon
 %{_bindir}/codacon
+%{_bindir}/gcodacon
 %{_bindir}/cpasswd
 %{_bindir}/ctokens
 %{_bindir}/cunlog
@@ -260,11 +258,42 @@ rm -rf %{_builddir}/obj-%{version}
 %{_sbindir}/merge
 %{_sbindir}/readdump
 %{_sbindir}/tape.pl
-%{_sbindir}/updatesrv
-%{_sbindir}/updateclnt
-%{_sbindir}/updatefetch
-%{_sbindir}/volutil
+#%{_sbindir}/updatesrv
+#%{_sbindir}/updateclnt
+#%{_sbindir}/updatefetch
+#%{_sbindir}/volutil
 %{_sbindir}/codadump2tar
 %{_mandir}/man5/backuplogs.5.*
 %{_mandir}/man5/dumpfile.5.*
 %{_mandir}/man5/dumplist.5.*
+
+
+%changelog
+* Wed Jan 27 2010 Antoine Ginies <aginies@mandriva.com> 6.9.4-2mdv2010.1
++ Revision: 497223
+- remove missing binaries
+- fix the build
+
+  + Thierry Vignaud <tvignaud@mandriva.com>
+    - rebuild
+
+  + Guillaume Rousse <guillomovitch@mandriva.org>
+    - package renaming
+
+* Fri Mar 06 2009 Guillaume Rousse <guillomovitch@mandriva.org> 6.9.4-1mdv2009.1
++ Revision: 349583
+- new version
+- rebuild for latest readline
+
+  + Thierry Vignaud <tvignaud@mandriva.com>
+    - rebuild
+    - fix lwp buildrequires (b/c of breakage in lwp lib when adapting to new devel
+      policy)
+    - rebuild
+    - fix prereq
+    - kill re-definition of %%buildroot on Pixel's request
+    - import coda-debug
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
