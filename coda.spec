@@ -4,7 +4,7 @@
 
 Name: coda
 Version: 6.9.4
-Release: 3
+Release: 4
 Summary: Coda distributed filesystem
 License: GPL
 Group: Networking/Other
