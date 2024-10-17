@@ -8,7 +8,7 @@ Release: 4
 Summary: Coda distributed filesystem
 License: GPL
 Group: Networking/Other
-Url: http://www.coda.cs.cmu.edu/doc/html/index.html
+Url: https://www.coda.cs.cmu.edu/doc/html/index.html
 Source: ftp://ftp.coda.cs.cmu.edu/pub/coda/src/coda-%{version}.tar.gz
 Patch0:	venus_vol_cml.patch
 BuildRequires: lwp-devel
